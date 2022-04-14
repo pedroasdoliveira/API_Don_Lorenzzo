@@ -1,5 +1,11 @@
-import express from "express";
-import {findAllPizzasController, findByIdPizzaController, createPizzaController, updatePizzaController} from '../controllers/pizza.controller.js';
+import express from 'express';
+import {
+  findAllPizzasController,
+  findByIdPizzaController,
+  createPizzaController,
+  updatePizzaController,
+  deletePizzaController
+} from '../controllers/pizza.controller.js';
 
 export const route = express.Router();
 
@@ -11,4 +17,4 @@ route.post('/create', createPizzaController);
 
 route.put('/updated/:id', updatePizzaController);
 
-route.delete('/delete/:id', );
+route.delete('/delete/:id', deletePizzaController);

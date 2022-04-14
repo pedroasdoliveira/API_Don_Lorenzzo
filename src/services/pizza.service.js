@@ -27,26 +27,29 @@ const pizzas = [
 ];
 
 export const findAllPizzasSevice = () => {
-    return pizzas;
-}
-
-export const findByIdPizzaService = (idParametro) => {
-    const pizza = pizzas.find((pizza) => pizza.id === idParametro);
-    return pizza;
-}
-
-export const createPizzaService = (newPizza) => {
-    const newId = pizzas.length + 1;
-    newPizza.id = newId;
-    pizzas.push(newPizza);
-    return newPizza;
-}
-
-export const updatePizzaService = (id, editedPizza) => {
-    editedPizza['id'] = id;
-    const index = pizzas.findIndex((pizza) => pizza.id == editedPizza);
-    pizzas[index] = editedPizza;
-    return editedPizza;
+  return pizzas;
 };
 
+export const findByIdPizzaService = (idParametro) => {
+  const pizza = pizzas.find((pizza) => pizza.id === idParametro);
+  return pizza;
+};
 
+export const createPizzaService = (newPizza) => {
+  const newId = pizzas.length + 1;
+  newPizza.id = newId;
+  pizzas.push(newPizza);
+  return newPizza;
+};
+
+export const updatePizzaService = (id, editedPizza) => {
+  editedPizza['id'] = id;
+  const index = pizzas.findIndex((pizza) => pizza.id == editedPizza);
+  pizzas[index] = editedPizza;
+  return editedPizza;
+};
+
+export const deletePizzaService = (id) => {
+  const index = pizzas.findIndex((pizza) => pizza.id == id);
+  return pizzas.splice(index, 1);
+};

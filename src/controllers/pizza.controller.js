@@ -50,5 +50,12 @@ export const updatePizzaController = (req, res) => {
 };
 
 export const deletePizzaController = (req, res) => {
-    
-}
+  try {
+    const idParametro = req.params.id;
+    pizzaService.deletePizzaService(idParametro);
+
+    res.status(200).send({ message: 'Pizza excluida do catalogo com sucesso' });
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
+};
