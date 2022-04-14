@@ -24,6 +24,14 @@ const pizzas = [
     preco: 22.0,
     avaliacao: 5.0,
   },
+  {
+    id: 4,
+    sabor: 'Cogumelo com tomate',
+    descricao: 'Pizza de cogumelo com tomate',
+    image: './assets/image/pizza3.png',
+    preco: 24.0,
+    avaliacao: 5.2,
+  },
 ];
 
 export const findAllPizzasSevice = () => {

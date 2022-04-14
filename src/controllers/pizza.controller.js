@@ -10,12 +10,12 @@ export const findByIdPizzaController = (req, res) => {
   try {
     const idParametro = Number(req.params.id);
 
-    if (!idParametro) {
-      res.send({ message: 'Id não encontrado' });
+    const escolherPizza = pizzaService.findByIdPizzaService(idParametro);
+
+    if (escolherPizza == undefined) {
+      res.status(404).send({ message: 'Id não encontrado' });
       return;
     }
-
-    const escolherPizza = pizzaService.findByIdPizzaService(idParametro);
 
     res.status(200).send(escolherPizza);
   } catch (err) {
