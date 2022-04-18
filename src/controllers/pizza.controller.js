@@ -65,7 +65,11 @@ export const updatePizzaController = (req, res) => {
       !editedPizza.preco ||
       !editedPizza.avaliacao
     ) {
-      return res.status(400).send({ message: 'Erro na verificação! Envie todos os campos requisitados!' });
+      return res
+        .status(400)
+        .send({
+          message: 'Erro na verificação! Envie todos os campos requisitados!',
+        });
     }
 
     const updatedPizza = pizzaService.updatePizzaService(
@@ -84,7 +88,7 @@ export const deletePizzaController = (req, res) => {
     const idParametro = req.params.id;
 
     if (!idParametro) {
-      return res.status(400).send({message: 'Id inválido!'});
+      return res.status(400).send({ message: 'Id inválido!' });
     }
 
     pizzaService.deletePizzaService(idParametro);

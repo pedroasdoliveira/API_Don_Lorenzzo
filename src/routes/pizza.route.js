@@ -4,7 +4,7 @@ import {
   findByIdPizzaController,
   createPizzaController,
   updatePizzaController,
-  deletePizzaController
+  deletePizzaController,
 } from '../controllers/pizza.controller.js';
 
 export const route = express.Router();
