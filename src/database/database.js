@@ -14,5 +14,3 @@ export const connectToDatabase = () => {
       console.log(`Erro ao conectar com o MongoDB. Erro: ${err}`);
     });
 };
-
-

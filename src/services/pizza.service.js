@@ -1,45 +1,12 @@
-const pizzas = [
-  {
-    id: 1,
-    sabor: 'Mussarela',
-    descricao:
-      'Pizza com molho de tomate com recheio de mussarela por cima com ingredientes.',
-    image: './assets/image/pizza.png',
-    preco: 20.0,
-    avaliacao: 5.1,
-  },
-  {
-    id: 2,
-    sabor: 'Americana',
-    descricao: 'Pizza americana com diversos ingredientes',
-    image: './assets/image/pizza4.png',
-    preco: 23.0,
-    avaliacao: 4.8,
-  },
-  {
-    id: 3,
-    sabor: 'Chocolate',
-    descricao: 'Pizza doce de chocolate',
-    image: './assets/image/pizza7.png',
-    preco: 22.0,
-    avaliacao: 5.0,
-  },
-  {
-    id: 4,
-    sabor: 'Cogumelo com tomate',
-    descricao: 'Pizza de cogumelo com tomate',
-    image: './assets/image/pizza3.png',
-    preco: 24.0,
-    avaliacao: 5.2,
-  },
-];
+import { Pizza } from '../models/Pizza.js'
 
-export const findAllPizzasSevice = () => {
+export const findAllPizzasSevice = async () => {
+  const pizzas = await Pizza.find();
   return pizzas;
 };
 
-export const findByIdPizzaService = (idParametro) => {
-  const pizza = pizzas.find((pizza) => pizza.id === idParametro);
+export const findByIdPizzaService = async (idParametro) => {
+  const pizza = await Pizza.findById(idParametro)
   return pizza;
 };
 

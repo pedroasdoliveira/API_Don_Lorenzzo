@@ -1,7 +1,8 @@
+import mongoose from 'mongoose';
 import * as pizzaService from '../services/pizza.service.js';
 
-export const findAllPizzasController = (req, res) => {
-  const pizzas = pizzaService.findAllPizzasSevice();
+export const findAllPizzasController = async (req, res) => {
+  const pizzas = await pizzaService.findAllPizzasSevice();
 
   if (pizzas.length == 0) {
     return res
@@ -12,11 +13,15 @@ export const findAllPizzasController = (req, res) => {
   res.send(pizzas);
 };
 
-export const findByIdPizzaController = (req, res) => {
+export const findByIdPizzaController = async (req, res) => {
   try {
-    const idParametro = Number(req.params.id);
+    const idParametro = req.params.id;
 
-    const escolherPizza = pizzaService.findByIdPizzaService(idParametro);
+    if (!mongoose.Types.ObjectId.isValid(idParametro)) {
+      return res.status(400).send({ message: 'Id invalido' });
+    }
+
+    const escolherPizza = await pizzaService.findByIdPizzaService(idParametro);
 
     if (escolherPizza == undefined) {
       res.status(404).send({ message: 'Id não encontrado' });
@@ -65,11 +70,9 @@ export const updatePizzaController = (req, res) => {
       !editedPizza.preco ||
       !editedPizza.avaliacao
     ) {
-      return res
-        .status(400)
-        .send({
-          message: 'Erro na verificação! Envie todos os campos requisitados!',
-        });
+      return res.status(400).send({
+        message: 'Erro na verificação! Envie todos os campos requisitados!',
+      });
     }
 
     const updatedPizza = pizzaService.updatePizzaService(
