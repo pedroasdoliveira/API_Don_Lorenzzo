@@ -1,0 +1,31 @@
+[
+  {
+    "sabor": "Mussarela",
+    "descricao":
+      "Pizza com molho de tomate com recheio de mussarela por cima com ingredientes.",
+    "image": "./assets/image/pizza.png",
+    "preco": 20.0,
+    "avaliacao": 5.1
+  },
+  {
+    "sabor": "Americana",
+    "descricao": "Pizza americana com diversos ingredientes",
+    "image": "./assets/image/pizza4.png",
+    "preco": 23.0,
+    "avaliacao": 4.8
+  },
+  {
+    "sabor": "Chocolate",
+    "descricao": "Pizza doce de chocolate",
+    "image": "./assets/image/pizza7.png",
+    "preco": 22.0,
+    "avaliacao": 5.0
+  },
+  {
+    "sabor": "Cogumelo com tomate",
+    "descricao": "Pizza de cogumelo com tomate",
+    "image": "./assets/image/pizza3.png",
+    "preco": 24.0,
+    "avaliacao": 5.2
+  }
+]
