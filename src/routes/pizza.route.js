@@ -9,7 +9,7 @@ import {
 
 export const route = express.Router();
 
-route.get('/catalogo-pizzas', findAllPizzasController);
+route.get('/catalog-pizzas', findAllPizzasController);
 
 route.get('/pizza/:id', findByIdPizzaController);
 

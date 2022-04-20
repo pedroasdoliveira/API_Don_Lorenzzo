@@ -1,25 +1,25 @@
 import { Pizza } from '../models/Pizza.js'
 
 export const findAllPizzasSevice = async () => {
-  const pizzas = await Pizza.find();
-  return pizzas;
+  const allPizzas = await Pizza.find();
+  return allPizzas;
 };
 
-export const findByIdPizzaService = async (idParametro) => {
-  const pizza = await Pizza.findById(idParametro)
+export const findByIdPizzaService = async (idParam) => {
+  const pizza = await Pizza.findById(idParam)
   return pizza;
 };
 
 export const createPizzaService = async (newPizza) => {
-  const pizzaAdd = await Pizza.create(newPizza)
-  return pizzaAdd;
+  const addPizza = await Pizza.create(newPizza)
+  return addPizza;
 };
 
-export const updatePizzaService = async (id, editedPizza) => {
-  const pizzaUpdate = await Pizza.findByIdAndUpdate(id, editedPizza);
-  return pizzaUpdate;
+export const updatePizzaService = async (idParam, editedPizza) => {
+  const updatePizza = await Pizza.findByIdAndUpdate(idParam, editedPizza);
+  return updatePizza;
 };
 
-export const deletePizzaService = async (id) => {
-  return await Pizza.findByIdAndDelete(id);
+export const deletePizzaService = async (idParam) => {
+  return await Pizza.findByIdAndDelete(idParam);
 };

@@ -2,33 +2,33 @@ import mongoose from 'mongoose';
 import * as pizzaService from '../services/pizza.service.js';
 
 export const findAllPizzasController = async (req, res) => {
-  const pizzas = await pizzaService.findAllPizzasSevice();
+  const allPizzas = await pizzaService.findAllPizzasSevice();
 
-  if (pizzas.length == 0) {
+  if (allPizzas.length == 0) {
     return res
       .status(404)
       .send({ message: 'Não existe nenhuma pizza cadastrada!' });
   }
 
-  res.send(pizzas);
+  res.send(allPizzas);
 };
 
 export const findByIdPizzaController = async (req, res) => {
   try {
-    const idParametro = req.params.id;
+    const idParam = req.params.id;
 
-    if (!mongoose.Types.ObjectId.isValid(idParametro)) {
+    if (!mongoose.Types.ObjectId.isValid(idParam)) {
       return res.status(400).send({ message: 'Id invalido' });
     }
 
-    const escolherPizza = await pizzaService.findByIdPizzaService(idParametro);
+    const chosenPizza = await pizzaService.findByIdPizzaService(idParam);
 
-    if (escolherPizza == undefined) {
+    if (chosenPizza == undefined) {
       res.status(404).send({ message: 'Id não encontrado' });
       return;
     }
 
-    res.status(202).send(escolherPizza);
+    res.status(202).send(chosenPizza);
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
@@ -59,9 +59,9 @@ export const createPizzaController = async (req, res) => {
 
 export const updatePizzaController = async (req, res) => {
   try {
-    const idParametro = req.params.id;
+    const idParam = req.params.id;
 
-    if (!mongoose.Types.ObjectId.isValid(idParametro)) {
+    if (!mongoose.Types.ObjectId.isValid(idParam)) {
       return res.status(400).send({message: 'Id não localizado'})
     }
 
@@ -81,7 +81,7 @@ export const updatePizzaController = async (req, res) => {
     }
 
     const updatedPizza = await pizzaService.updatePizzaService(
-      idParametro,
+      idParam,
       editedPizza,
     );
 
@@ -93,13 +93,13 @@ export const updatePizzaController = async (req, res) => {
 
 export const deletePizzaController = async (req, res) => {
   try {
-    const idParametro = req.params.id;
+    const idParam = req.params.id;
 
-    if (!mongoose.Types.ObjectId.isValid(idParametro)) {
+    if (!mongoose.Types.ObjectId.isValid(idParam)) {
       return res.status(400).send({message: 'Id inválido'})
     }
 
-    await pizzaService.deletePizzaService(idParametro);
+    await pizzaService.deletePizzaService(idParam);
 
     res.status(200).send({ message: 'Pizza excluida do catalogo com sucesso!' });
   } catch (err) {
