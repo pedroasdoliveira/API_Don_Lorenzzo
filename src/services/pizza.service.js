@@ -10,18 +10,14 @@ export const findByIdPizzaService = async (idParametro) => {
   return pizza;
 };
 
-export const createPizzaService = (newPizza) => {
-  const newId = pizzas.length + 1;
-  newPizza.id = newId;
-  pizzas.push(newPizza);
-  return newPizza;
+export const createPizzaService = async (newPizza) => {
+  const pizzaAdd = await Pizza.create(newPizza)
+  return pizzaAdd;
 };
 
-export const updatePizzaService = (id, editedPizza) => {
-  editedPizza['id'] = id;
-  const index = pizzas.findIndex((pizza) => pizza.id == editedPizza);
-  pizzas[index] = editedPizza;
-  return editedPizza;
+export const updatePizzaService = async (id, editedPizza) => {
+  const pizzaUpdate = await Pizza.findByIdAndUpdate(id, editedPizza);
+  return pizzaUpdate;
 };
 
 export const deletePizzaService = (id) => {

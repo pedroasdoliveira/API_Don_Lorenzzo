@@ -34,7 +34,7 @@ export const findByIdPizzaController = async (req, res) => {
   }
 };
 
-export const createPizzaController = (req, res) => {
+export const createPizzaController = async (req, res) => {
   try {
     const pizza = req.body;
 
@@ -49,7 +49,7 @@ export const createPizzaController = (req, res) => {
       return res.status(400).send({ message: 'Envie o objeto por completo!' });
     }
 
-    const newPizza = pizzaService.createPizzaService(pizza);
+    const newPizza = await pizzaService.createPizzaService(pizza);
 
     res.status(201).send(newPizza);
   } catch (err) {
@@ -57,9 +57,14 @@ export const createPizzaController = (req, res) => {
   }
 };
 
-export const updatePizzaController = (req, res) => {
+export const updatePizzaController = async (req, res) => {
   try {
-    const idParametro = Number(req.params.id);
+    const idParametro = req.params.id;
+
+    if (!mongoose.Types.ObjectId.isValid(idParametro)) {
+      return res.status(400).send({message: 'Id não localizado'})
+    }
+
     const editedPizza = req.body;
 
     if (
@@ -75,7 +80,7 @@ export const updatePizzaController = (req, res) => {
       });
     }
 
-    const updatedPizza = pizzaService.updatePizzaService(
+    const updatedPizza = await pizzaService.updatePizzaService(
       idParametro,
       editedPizza,
     );
