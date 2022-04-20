@@ -20,7 +20,6 @@ export const updatePizzaService = async (id, editedPizza) => {
   return pizzaUpdate;
 };
 
-export const deletePizzaService = (id) => {
-  const index = pizzas.findIndex((pizza) => pizza.id == id);
-  return pizzas.splice(index, 1);
+export const deletePizzaService = async (id) => {
+  return await Pizza.findByIdAndDelete(id);
 };

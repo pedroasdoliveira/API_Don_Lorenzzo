@@ -91,17 +91,17 @@ export const updatePizzaController = async (req, res) => {
   }
 };
 
-export const deletePizzaController = (req, res) => {
+export const deletePizzaController = async (req, res) => {
   try {
     const idParametro = req.params.id;
 
-    if (!idParametro) {
-      return res.status(400).send({ message: 'Id inválido!' });
+    if (!mongoose.Types.ObjectId.isValid(idParametro)) {
+      return res.status(400).send({message: 'Id inválido'})
     }
 
-    pizzaService.deletePizzaService(idParametro);
+    await pizzaService.deletePizzaService(idParametro);
 
-    res.status(200).send({ message: 'Pizza excluida do catalogo com sucesso' });
+    res.status(200).send({ message: 'Pizza excluida do catalogo com sucesso!' });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
