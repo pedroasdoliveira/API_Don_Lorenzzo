@@ -17,13 +17,9 @@ export const findByIdPizzaController = async (req, res) => {
   try {
     const idParam = req.params.id;
 
-    if (!mongoose.Types.ObjectId.isValid(idParam)) {
-      return res.status(400).send({ message: 'Id invalido' });
-    }
-
     const chosenPizza = await pizzaService.findByIdPizzaService(idParam);
 
-    if (chosenPizza == undefined) {
+    if (!chosenPizza) {
       res.status(404).send({ message: 'Id não encontrado' });
       return;
     }
@@ -59,11 +55,7 @@ export const createPizzaController = async (req, res) => {
 
 export const updatePizzaController = async (req, res) => {
   try {
-    const idParam = req.params.id;
-
-    if (!mongoose.Types.ObjectId.isValid(idParam)) {
-      return res.status(400).send({message: 'Id não localizado'})
-    }
+    const idParam = req.params.id;  
 
     const editedPizza = req.body;
 
@@ -93,11 +85,7 @@ export const updatePizzaController = async (req, res) => {
 
 export const deletePizzaController = async (req, res) => {
   try {
-    const idParam = req.params.id;
-
-    if (!mongoose.Types.ObjectId.isValid(idParam)) {
-      return res.status(400).send({message: 'Id inválido'})
-    }
+    const idParam = req.params.id;  
 
     await pizzaService.deletePizzaService(idParam);
 
